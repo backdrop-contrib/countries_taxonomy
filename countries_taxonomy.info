@@ -1,0 +1,5 @@
+name = Countries Taxonomy
+description = Provides countries list.
+package = Core
+version = VERSION
+core = 7.x
