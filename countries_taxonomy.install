@@ -1,17 +1,22 @@
 <?php
 
 /**
+ * @file
+ * Taxonomy creat from install.
+ */
+
+/**
  * Implements hook_install().
  */
 function countries_taxonomy_install() {
   $countries = (object) array(
-      'name' => 'Countries',
-      'description' => 'List of all countries',
-      'machine_name' => 'countries_taxonoy',
-   );  
+    'name' => 'Countries',
+    'description' => 'List of all countries',
+    'machine_name' => 'countries_taxonomy',
+  );
   taxonomy_vocabulary_save($countries);
 
-  $vocab = taxonomy_vocabulary_machine_name_load('countries_taxonoy');
+  $vocab = taxonomy_vocabulary_machine_name_load('countries_taxonomy');
 
   // Country list.
   $data = array(
@@ -42,7 +47,7 @@ function countries_taxonomy_install() {
     'Bermuda' => 'Bermuda',
     'Bhutan' => 'Kingdom of Bhutan',
     'Bolivia' => 'Plurinational State of Bolivia',
-    'Bosnia and Herzegovina' => 'Bosnia and Herzegovina',  
+    'Bosnia and Herzegovina' => 'Bosnia and Herzegovina',
     'Botswana' => 'Republic of Botswana',
     'Bouvet Island' => 'Bouvet Island',
     'Brazil' => 'Federative Republic of Brazil',
@@ -111,7 +116,7 @@ function countries_taxonomy_install() {
     'Guinea-Bissau' => 'Republic of Guinea-Bissau',
     'Guyana' => 'Co-operative Republic of Guyana',
     'Haiti' => 'Republic of Haiti',
-    'Heard Island and McDonald Islands' => 'Heard Island and Mcdonald Islands',  
+    'Heard Island and McDonald Islands' => 'Heard Island and Mcdonald Islands',
     'Honduras' => 'Republic of Honduras',
     'Hong Kong S.A.R., China' => 'Hong Kong S.A.R., China',
     'Hungary' => 'Hungary',
@@ -131,7 +136,7 @@ function countries_taxonomy_install() {
     'Jordan' => 'Hashemite Kingdom of Jordan',
     'Kazakhstan' => 'Republic of Kazakhstan',
     'Kenya' => 'Republic of Kenya',
-    'Kiribati' => 'Republic of Kiribati',  
+    'Kiribati' => 'Republic of Kiribati',
     'Kuwait' => 'State of Kuwait',
     'Kyrgyzstan' => 'Kyrgyz Republic',
     'Laos' => 'Lao People Democratic Republic',
@@ -264,23 +269,23 @@ function countries_taxonomy_install() {
     'Western Sahara' => 'Western Sahara',
     'Yemen' => 'Republic of Yemen',
     'Zambia' => 'Republic of Zambia',
-    'Zimbabwe' => 'Republic of Zimbabwe'
+    'Zimbabwe' => 'Republic of Zimbabwe',
   );
- 
+
   foreach ($data as $title => $description) {
     $term = (object) array(
-     'name' => $title,
-     'description' => $description,
-     'vid' => $vocab->vid,
+      'name' => $title,
+      'description' => $description,
+      'vid' => $vocab->vid,
     );
-    taxonomy_term_save($term); 
-  }  
+    taxonomy_term_save($term);
+  }
 }
 
 /**
  * Implements hook_uninstall().
  */
 function countries_taxonomy_uninstall() {
-  $vocab = taxonomy_vocabulary_machine_name_load('countries_taxonoy');
+  $vocab = taxonomy_vocabulary_machine_name_load('countries_taxonomy');
   taxonomy_vocabulary_delete($vocab->vid);
 }
