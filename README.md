@@ -20,5 +20,5 @@ complete text.
 Author and maintainer
 ------
 - Created for Drupal 7 by [ashishnema](https://www.drupal.org/u/ashishnema)
-- Ported to Backdrop CMS and maintained by argiepiano (https://github.com/argiepiano)
+- Ported to Backdrop CMS and maintained by [argiepiano](https://github.com/argiepiano)
 
