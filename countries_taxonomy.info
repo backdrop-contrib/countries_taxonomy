@@ -1,5 +1,5 @@
 name = Countries Taxonomy
+type = module
 description = Provides countries list.
-package = Core
-version = VERSION
-core = 7.x
+package = Other
+backdrop = 1.x

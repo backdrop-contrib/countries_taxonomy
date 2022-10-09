@@ -1,22 +1,21 @@
 <?php
-
 /**
  * @file
- * Taxonomy creat from install.
+ * Taxonomy create from install.
  */
 
 /**
  * Implements hook_install().
  */
 function countries_taxonomy_install() {
-  $countries = (object) array(
+  $countries = array(
     'name' => 'Countries',
     'description' => 'List of all countries',
     'machine_name' => 'countries_taxonomy',
   );
-  taxonomy_vocabulary_save($countries);
 
-  $vocab = taxonomy_vocabulary_machine_name_load('countries_taxonomy');
+  $vocab = new TaxonomyVocabulary($countries);
+  $vocab->save();
 
   // Country list.
   $data = array(
@@ -273,12 +272,12 @@ function countries_taxonomy_install() {
   );
 
   foreach ($data as $title => $description) {
-    $term = (object) array(
+    $term = entity_create('taxonomy_term', array(
       'name' => $title,
       'description' => $description,
-      'vid' => $vocab->vid,
-    );
-    taxonomy_term_save($term);
+      'vocabulary' => 'countries_taxonomy',
+    ));
+   taxonomy_term_save($term);
   }
 }
 
@@ -286,6 +285,5 @@ function countries_taxonomy_install() {
  * Implements hook_uninstall().
  */
 function countries_taxonomy_uninstall() {
-  $vocab = taxonomy_vocabulary_machine_name_load('countries_taxonomy');
-  taxonomy_vocabulary_delete($vocab->vid);
+  taxonomy_vocabulary_delete('countries_taxonomy');
 }
